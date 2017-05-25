@@ -8,3 +8,6 @@ sais
 searca
 forestry
 carillon
+fpark
+square
+star

@@ -124,7 +124,12 @@ public class GameActivity extends AppCompatActivity {
                         inputNo += 1;
                         if(answerText.equals(nameText)){
                             ContentValues newVal = new ContentValues();
-                            newVal.put("LEVEL", currentLevel+1);
+
+                            if(inputNo!=13) newVal.put("LEVEL", currentLevel+1);
+                            else {
+                                newVal.put("LEVEL", 1);
+                                currentLevel = 1; 
+                            }
                             db.update("USER", newVal, "_id = ?",
                                     new String[] {Integer.toString(1)});
                             answerText = "";
@@ -132,6 +137,7 @@ public class GameActivity extends AppCompatActivity {
                             inputNo = 0;
                             LinearLayout layout = (LinearLayout) findViewById(R.id.linearlayout1);
                             layout.removeAllViews();
+
                             newWord();
 
                         }
