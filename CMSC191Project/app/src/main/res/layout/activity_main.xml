@@ -9,7 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="#4B4E6D"
+    android:background="#10163C"
     tools:context="com.example.kidde.cmsc191project.MainActivity">
 
     <ImageView
@@ -21,11 +21,11 @@
         android:layout_marginBottom="40dp"
         android:layout_above="@+id/playButton"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="30dp" />
 
     <Button
         android:text="@string/play_label"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/playButton"
         style="@style/Widget.AppCompat.Button.Colored"
@@ -36,5 +36,7 @@
         android:fontFamily="monospace"
         android:textSize="24sp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_width="200dp"
+        android:onClick="play" />
 </RelativeLayout>

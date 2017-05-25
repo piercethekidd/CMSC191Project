@@ -27,22 +27,30 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE IMAGE("
                 + "_id INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + "NAME TEXT, "
-                + "PICTURE TEXT);");
+                + "NAME TEXT);");
+        db.execSQL("CREATE TABLE USER("
+                + "_id INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + "LEVEL INTEGER, "
+                + "COIN INTEGER);");
         try {
             BufferedReader reader = new BufferedReader(
                     new InputStreamReader(mngr.open("strings.txt")));
             String line;
             String imageName = "image";
-            int count = 0;
+
             while((line = reader.readLine()) != null) {
-                count += 1;
+
                 ContentValues wordValue = new ContentValues();
                 wordValue.put("NAME", line);
-                wordValue.put("PICTURE", imageName + count + ".jpg");
                 db.insert("IMAGE", null, wordValue);
-                count += 3;
+
             }
+
+            ContentValues userValues = new ContentValues();
+            userValues.put("LEVEL", 1);
+            userValues.put("COIN", 300);
+            db.insert("USER", null, userValues);
+
 
         }
         catch (Exception e) {
@@ -52,17 +60,10 @@ public class GameDatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    private static void insertPicture (SQLiteDatabase db, String name, String image) {
-        ContentValues pictureValues = new ContentValues();
-        pictureValues.put("NAME", name);
-        pictureValues.put("PICTURE", image);
-
-        db.insert("IMAGE", null, pictureValues);
-    }
-
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        db.execSQL("DROP TABLE IF EXISTS IMAGE");
+        onCreate(db);
     }
 
 }
